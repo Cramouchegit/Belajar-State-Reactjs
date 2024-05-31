@@ -146,7 +146,7 @@ a. Komponen Induk
 
    ```
 
-3. Memahami dan Menjalankan Kode
+5. Memahami dan Menjalankan Kode
    Dengan langkah-langkah di atas, kita telah membuat dan menggunakan state di React.
 
 a. Komponen Fungsional (NavigationBar):
