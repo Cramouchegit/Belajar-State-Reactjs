@@ -1,70 +1,167 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Menggunakan state di React.js adalah konsep penting yang memungkinkan komponen untuk menyimpan dan mengelola data yang dapat berubah seiring waktu. Berikut adalah panduan langkah demi langkah yang jelas dan sederhana untuk pemula tentang cara menggunakan state di React.js:
 
-## Available Scripts
+1. Memahami State
+   State adalah objek khusus di dalam komponen React yang digunakan untuk menyimpan data atau informasi tentang komponen tersebut. Berbeda dengan props, state bersifat lokal dan hanya dapat diakses atau dimodifikasi di dalam komponen itu sendiri.
 
-In the project directory, you can run:
+2. Persiapkan Proyek React
+   Jika Anda belum memiliki proyek React, buat proyek baru menggunakan Create React App:
 
-### `npm start`
+   ```bash
+   npx create-react-app nama-folder-reactjsmu
+   cd my-app
+   npm start
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   Ini akan memulai server pengembangan dan membuka aplikasi di browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Membuat Komponen dengan State
+   Anda bisa menggunakan state dalam komponen fungsional dengan menggunakan hook useState atau dalam komponen kelas.
 
-### `npm test`
+a. Komponen Induk
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Buat file baru di dalam folder src/components bernama NavigationBar.js
+2. Tambahkan kode berikut ke dalam file NavigationBar.js
 
-### `npm run build`
+   ```bash
+        import "../App.css";
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+            const NavigationBar = ({ navValue }) => {
+                return (
+                    <div>
+                        <nav>
+                            <div className="logo">
+                                <h1>Belajar State</h1>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="home">{!navValue ? "Home" : navValue}</a>
+                                </li>
+                                <li>
+                                    <a href="services">{!navValue ? "Services" : navValue}</a>
+                                </li>
+                                <li>
+                                    <a href="blog">{!navValue ? "Blog" : navValue}</a>
+                                </li>
+                                <li>
+                                    <a href="contact">{!navValue ? "Contact" : navValue}</a>
+                                </li>
+                            </ul>
+                                <div className="hamburger">
+                                    <span className="line"></span>
+                                    <span className="line"></span>
+                                    <span className="line"></span>
+                                </div>
+                        </nav>
+                        <div className="menubar">
+                            <ul>
+                                <li>
+                                    <a href="home">Home</a>
+                                </li>
+                                <li>
+                                    <a href="services">Services</a>
+                                </li>
+                                <li>
+                                    <a href="blog">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="contact">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                );
+            };
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+            export default NavigationBar;
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   4. Menggunakan Komponen di Aplikasi Utama
+      Untuk melihat hasilnya, kita perlu menggunakan ParentComponent di dalam aplikasi utama.
 
-### `npm run eject`
+   Buka src/App.js.
+   Import NavigationBar dan tambahkan ke dalam return statement:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+        import React, { useState } from "react";
+        import "./App.css";
+        import NavigationBar from "./components/NavigationBar";
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        function App() {
+        const [getNavbarValue, setNavbarValue] = useState("");
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+        const changeNavbarValueMyHome = () => {
+            setNavbarValue("My Home");
+        };
+        const changeNavbarValueMyService = () => {
+            setNavbarValue("My Service");
+        };
+        const changeNavbarValueMyBlog = () => {
+            setNavbarValue("My Blog");
+        };
+        const changeNavbarValueMyContact = () => {
+            setNavbarValue("My Contact");
+        };
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+        return (
+            <div className="App">
+                <NavigationBar navValue={getNavbarValue} />
+                <h1>INI HOMEPAGE</h1>
+                <p>Belajar Menggunakan State</p>
+                <button className="btn jarak" onClick={() => changeNavbarValueMyHome()}>
+                    <a href="#">
+                    <span>Ubah Navigasi</span>
+                    </a>
+                </button>
+                <br />
+                <button
+                    className="btn jarak"
+                    onClick={() => changeNavbarValueMyService()}
+                >
+                    <a href="#">
+                    <span>Ubah Navigasi</span>
+                    </a>
+                </button>
+                <br />
+                <button className="btn jarak" onClick={() => changeNavbarValueMyBlog()}>
+                    <a href="#">
+                    <span>Ubah Navigasi</span>
+                    </a>
+                </button>
+                <br />
+                <button
+                    className="btn jarak"
+                    onClick={() => changeNavbarValueMyContact()}
+                >
+                    <a href="#">
+                    <span>Ubah Navigasi</span>
+                    </a>
+                </button>
+            </div>
+            );
+        }
 
-## Learn More
+        export default App;
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Memahami dan Menjalankan Kode
+   Dengan langkah-langkah di atas, kita telah membuat dan menggunakan state di React.
 
-### Code Splitting
+a. Komponen Fungsional (NavigationBar):
+Menggunakan useState untuk mendeklarasikan state getNavbarValue.
+setNavbarValue adalah fungsi untuk memperbarui state getNavbarValue.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+b. Komponen Kelas (NavigationBar):
+State navValue dideklarasikan di dalam constructor.
+{!navValue ? "Services" : navValue} digunakan untuk memperbarui state count.
 
-### Analyzing the Bundle Size
+6. Jalankan Aplikasi
+   Pastikan server pengembangan berjalan dengan:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   npm start
+   ```
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   Dengan mengikuti langkah-langkah ini, Anda dapat memahami cara menggunakan state di React.js untuk mengelola data yang dapat berubah dalam komponen. Selamat mencoba!

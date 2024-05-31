@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import NavigationBar from "./components/NavigationBar";
 
 function App() {
+  const [getNavbarValue, setNavbarValue] = useState("");
+
+  const changeNavbarValueMyHome = () => {
+    setNavbarValue("My Home");
+  };
+  const changeNavbarValueMyService = () => {
+    setNavbarValue("My Service");
+  };
+  const changeNavbarValueMyBlog = () => {
+    setNavbarValue("My Blog");
+  };
+  const changeNavbarValueMyContact = () => {
+    setNavbarValue("My Contact");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+      <NavigationBar navValue={getNavbarValue} />
+      <h1>INI HOMEPAGE</h1>
+      <p>Belajar Menggunakan State</p>
+      <button className="btn jarak" onClick={() => changeNavbarValueMyHome()}>
+        <a href="#">
+          <span>Ubah Navigasi</span>
         </a>
-      </header>
+      </button>
+      <br />
+      <button
+        className="btn jarak"
+        onClick={() => changeNavbarValueMyService()}
+      >
+        <a href="#">
+          <span>Ubah Navigasi</span>
+        </a>
+      </button>
+      <br />
+      <button className="btn jarak" onClick={() => changeNavbarValueMyBlog()}>
+        <a href="#">
+          <span>Ubah Navigasi</span>
+        </a>
+      </button>
+      <br />
+      <button
+        className="btn jarak"
+        onClick={() => changeNavbarValueMyContact()}
+      >
+        <a href="#">
+          <span>Ubah Navigasi</span>
+        </a>
+      </button>
     </div>
   );
 }
