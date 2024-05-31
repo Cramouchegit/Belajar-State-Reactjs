@@ -77,8 +77,8 @@ a. Komponen Induk
             export default NavigationBar;
    ```
 
-   4. Menggunakan Komponen di Aplikasi Utama
-      Untuk melihat hasilnya, kita perlu menggunakan ParentComponent di dalam aplikasi utama.
+4. Menggunakan Komponen di Aplikasi Utama
+   Untuk melihat hasilnya, kita perlu menggunakan ParentComponent di dalam aplikasi utama.
 
    Buka src/App.js.
    Import NavigationBar dan tambahkan ke dalam return statement:
